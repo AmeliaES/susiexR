@@ -1,0 +1,11 @@
+Package: susiexR
+Type: Package
+Title: Formats and plots results from SuSiEx
+Version: 0.1.0
+Author: Amelia Edmondson-Stait
+Maintainer: Amelia Edmondson-Stait <amelia.edmondson-stait@ed.ac.uk>
+Description: 
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.1
