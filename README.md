@@ -14,3 +14,19 @@ An R package for formatting and plotting output from SuSiEx. The functions in th
 install.packages("devtools")
 devtools::install_github("ameliaes/susiexr")
 ```
+## Quick Start
+
+1. Format SuSiEx results:
+```
+results <- format_results("path/to/susiex/results")
+```
+
+2. Plot Post hoc probability credible set manifest causal across ancestries (ie. `POST-HOC_PROB_POP${i}`):
+```
+plotAncestryCausal(results$summary, c("EUR", "AFR", "SAS"))
+```
+
+3. Visualize the relationship between credible set characteristics and maximum PIP:
+```
+plotPurityPIP(results$summary)
+```
