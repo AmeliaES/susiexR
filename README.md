@@ -8,3 +8,25 @@ Please see more detail on SuSiEx software [here](https://github.com/getian107/Su
 
 ## What is susiexR?
 An R package for formatting and plotting output from SuSiEx. The functions in this package reads the output from SuSiEx (ie. `.summary`,`.cs` and `.snp` files) and formats them into data frames that can be used as input to ggplot for plotting.
+
+## Installation
+```{r}
+install.packages("devtools")
+devtools::install_github("ameliaes/susiexr")
+```
+## Quick Start
+
+1. Format SuSiEx results:
+```
+results <- format_results("path/to/susiex/results")
+```
+
+2. Plot Post hoc probability credible set manifest causal across ancestries (ie. `POST-HOC_PROB_POP${i}`):
+```
+plotAncestryCausal(results$summary, c("EUR", "AFR", "SAS"))
+```
+
+3. Visualize the relationship between credible set characteristics and maximum PIP:
+```
+plotPurityPIP(results$summary)
+```
