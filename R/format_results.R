@@ -10,17 +10,22 @@
 #' each list item corresponding to a fine-mapped region. Data frame has an
 #' additional column for genomic location (`CHR:BP_START:BP_END`) for the region that was fine mapped.
 #'
-#' The function reads all relevant files in the specified directory where SuSiEx output. Files that cannot be
-#' processed are excluded from the final output, ie. they contain the values NULL or FAIL.
+#' The function reads all relevant files in the specified directory where SuSiEx
+#'  output. Files that cannot be
+#' processed are excluded from the final output, ie. they contain the values
+#' NULL or FAIL.
 #'
 #' @param path A character string specifying the directory containing the SuSiEx
 #' output files. This directory should include files with the extensions
 #' `.summary`, `.cs`, and `.snp`.
 #'
 #' @return A list with the following components:
-#'   - `summary`: A data frame containing the combined data from all `.summary` files.
-#'   - `cs`: A list of data frames, each representing a fine-mapped region from the `.cs` files.
-#'   - `snp`: A list of data frames, each representing a fine-mapped region from the `.snp` files.
+#'   - `summary`: A data frame containing the combined data from all `.summary`
+#'   files.
+#'   - `cs`: A list of data frames, each representing a fine-mapped region from
+#'   the `.cs` files.
+#'   - `snp`: A list of data frames, each representing a fine-mapped region from
+#'    the `.snp` files.
 #'
 #' @examples
 #' format_results("path/to/susiex/results")
@@ -31,15 +36,16 @@
 #'
 #' @export
 
-format_results <- function(path){
+format_results <- function(path) {
   file_extensions <- c("summary", "cs", "snp")
 
-  results <- lapply(file_extensions, function(ext){
+  results <- lapply(file_extensions, function(ext) {
     paths <- list.files(path,
-                        pattern = paste0("\\.", ext ,"$"),
-                        full.names = TRUE)
+      pattern = paste0("\\.", ext, "$"),
+      full.names = TRUE
+    )
 
-    processed_files <- lapply(paths, function(path){
+    processed_files <- lapply(paths, function(path) {
       process_file(file = path, file_ext = ext)
     })
     # Clean up NULL values (failed files)
@@ -52,4 +58,3 @@ format_results <- function(path){
   results$summary <- do.call(rbind, results$summary)
   return(results)
 }
-
