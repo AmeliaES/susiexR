@@ -20,6 +20,11 @@
 #' @export
 
 format_results <- function(path) {
+
+  # Check location at path exists
+
+  # Check location at path contains .summary, .snp and .cs files (1 of each, ie. sets of 3, with the same base name)
+
   # Identify all .summary files
   summary_files <- list.files(path, pattern = "\\.summary$", full.names = TRUE)
 

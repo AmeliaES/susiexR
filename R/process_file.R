@@ -31,6 +31,8 @@ process_file <- function(file, file_ext, chr_info = NULL) {
       # Read the remaining data, skipping the header line
       results <- fread(file, skip = 1)
 
+      #
+
       # Add CHR, BP_START, and BP_END to the data
       results <- results %>%
         mutate(
