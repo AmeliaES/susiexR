@@ -12,34 +12,24 @@ on:
 
 jobs:
   test:
-    runs-on: macOS-latest
+    runs-on: macOS-latest  # Running on macOS
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  # Checkout the repository code
 
       - name: Set up R
-        uses: r-lib/actions/setup-r@v2
+        uses: r-lib/actions/setup-r@v2  # Set up R environment
         with:
-          r-version: 'release'  # Use the latest stable R version
-
-      - name: Install remotes package
-        run: |
-          install.packages("remotes")  # Install remotes package if it's not present
+          r-version: 'release'  # Use the latest stable version of R
 
       - name: Install dependencies
         run: |
-          install.packages("testthat")
-          remotes::install_deps(dependencies = TRUE)  # Ensure all dependencies are installed
-        shell: Rscript {0}
-
-      - name: Install pkg-config if missing (for macOS dependencies)
-        run: |
-          brew install pkg-config
-        shell: bash
+          install.packages("testthat")  # Install the testthat package
+          install.packages("devtools")  # You can also install devtools if needed
+        shell: Rscript {0}  # Run the installation via R
 
       - name: Run tests with testthat
         run: |
-          # Run testthat tests
-          Rscript -e "testthat::test_dir('tests/testthat')"
-        shell: Rscript {0}
+          Rscript -e "testthat::test_dir('tests/testthat')"  # Run the tests located in the tests/testthat directory
+        shell: Rscript {0}  # Execute test script via R
