@@ -3,9 +3,6 @@
 \name{mainPlot}
 \alias{mainPlot}
 \title{Generate Regional and Locus Zoom Plots for Fine-Mapped Genetic Data}
-\usage{
-mainPlot(cs_results, snp_results, sumstats, ancestries, plink_path)
-}
 \arguments{
 \item{cs_results}{Data frame containing credible set results.}
 

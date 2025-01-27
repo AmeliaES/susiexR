@@ -3,9 +3,6 @@
 \name{plotAncestryCausal}
 \alias{plotAncestryCausal}
 \title{Plot Ancestry-Specific Causal Inference Probabilities}
-\usage{
-plotAncestryCausal(summary_results, ancestries)
-}
 \arguments{
 \item{summary_results}{A data frame containing the summary results from a
 SuSiEx analysis, the object returned from format_results()$summary.}
@@ -27,6 +24,8 @@ the probability of being causal (POST-HOC_PROB_POP_CS) for each SNP across
 different ancestries.
 }
 \examples{
+\dontrun{
 plotAncestryCausal(results$summary, c("EUR", "AFR", "SAS"))
+}
 
 }

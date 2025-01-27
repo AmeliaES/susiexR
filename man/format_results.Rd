@@ -4,35 +4,26 @@
 \alias{format_results}
 \title{Format SuSiEx Output Files}
 \usage{
-format_results(path)
+format_results(path, ancestries)
 }
 \arguments{
-\item{path}{A character string specifying the directory containing the SuSiEx
-output files. This directory should include files with the extensions
-`.summary`, `.cs`, and `.snp`.}
+\item{path}{A character string specifying the directory containing the SuSiEx output files.}
+
+\item{ancestries}{A character vector specifying the ancestries used in the SuSiEx analysis.}
 }
 \value{
 A list with the following components:
   - `summary`: A data frame containing the combined data from all `.summary` files.
-  - `cs`: A list of data frames, each representing a fine-mapped region from the `.cs` files.
-  - `snp`: A list of data frames, each representing a fine-mapped region from the `.snp` files.
+  - `cs`: A list of data frames for `.cs` files, each annotated with position information.
+  - `snp`: A list of data frames for `.snp` files, each annotated with position information.
 }
 \description{
-This function processes the output files from SuSiEx, specifically those with
-the extensions `.summary`, `.cs`, and `.snp`. It organises the results into a
-structured format for further analysis.
-}
-\details{
-- The `.summary` files are combined into a single data frame, with an
-additional column for genomic location (`CHR:BP_START:BP_END`).
-- The `.cs` and `.snp` files are returned as a list of data frames, with
-each list item corresponding to a fine-mapped region. Data frame has an
-additional column for genomic location (`CHR:BP_START:BP_END`) for the region that was fine mapped.
-
-The function reads all relevant files in the specified directory where SuSiEx output. Files that cannot be
-processed are excluded from the final output, ie. they contain the values NULL or FAIL.
+Processes the SuSiEx output files by extracting position information from `.summary` files and
+applying it to `.cs` and `.snp` files. Files that cannot be processed are excluded.
 }
 \examples{
-format_results("path/to/susiex/results")
+\dontrun{
+format_results("path/to/susiex/results", ancestries = c("EUR", "AFR"))
+}
 
 }

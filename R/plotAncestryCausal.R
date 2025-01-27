@@ -17,7 +17,9 @@
 #' different ancestries.
 #'
 #' @examples
+#' \dontrun{
 #' plotAncestryCausal(results$summary, c("EUR", "AFR", "SAS"))
+#' }
 #'
 #' @import dplyr
 #' @import tidyr
@@ -25,7 +27,22 @@
 #' @import stringr
 #'
 #' @export
+#' @name plotAncestryCausal
+
+utils::globalVariables(c(
+  "ALT_ALLELE", "ANCESTRY", "CHR", "BP_START", "LOCATION", "POST_HOC_PROB_POP_ANCESTRY",
+  ".", "POST_HOC_PROB_POP_CS"
+))
+
 plotAncestryCausal <-  function(summary_results, ancestries){
+
+  # this function should not run if "POST_HOC_PROB_POP" columns are not present
+  # from the output of SuSiEx
+  if (!all(str_detect(names(summary_results), "POST_HOC_PROB_POP"))) {
+    stop("No POST_HOC_PROB_POP columns found in the input data.
+         See the SuSiEx documentation for more information.")
+  }
+
   summary_results %>%
     # Create a new column called ANCESTRY which tells us which ancestries have data on that SNP
     # Many of the columns containing info from all ancestries
@@ -43,7 +60,7 @@ plotAncestryCausal <-  function(summary_results, ancestries){
       }
     })) %>%
     # remove the indiviudal ancestry columnms now we have the column we want
-    dplyr::select(-c("EUR", "AFR", "SAS")) %>%
+    dplyr::select(-all_of(ancestries)) %>%
     # create a column for location on the genome
     mutate(LOCATION = str_glue("{CHR}:{BP_START}:{BP_END}")) %>%
     # Ensure CHR and BP are in correct order on x-axis

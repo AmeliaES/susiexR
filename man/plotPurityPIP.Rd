@@ -3,9 +3,6 @@
 \name{plotPurityPIP}
 \alias{plotPurityPIP}
 \title{Plot Relationship Between Credible Set Characteristics and PIP}
-\usage{
-plotPurityPIP(summary_results = results$summary)
-}
 \arguments{
 \item{summary_results}{A data frame containing summary results, which should include the columns `CS_PURITY`, `MAX_PIP`, `CS_LENGTH`, and `CHR`.}
 }
@@ -26,6 +23,8 @@ The plot visualizes the data as follows:
 - Each point is colored by chromosome (`CHR`).
 }
 \examples{
+\dontrun{
 plotPurityPIP(results$summary)
+}
 
 }

@@ -4,25 +4,21 @@
 \alias{process_file}
 \title{Process Individual SuSiEx Output Files}
 \usage{
-process_file(file, file_ext)
+process_file(file, file_ext, chr_info = NULL, ancestries)
 }
 \arguments{
 \item{file}{A character string specifying the path to the file to be processed.}
 
-\item{file_ext}{A character string specifying the extension of the file (either "summary", "cs", or "snp").}
+\item{file_ext}{A character string specifying the extension of the file ("summary", "cs", or "snp").}
+
+\item{chr_info}{A named list containing chromosome (CHR), start position (BP_START), and end position (BP_END)
+extracted from the `.summary` file, required for `.cs` and `.snp` files. Default is `NULL`.}
 }
 \value{
-A data frame containing the processed results, or `NULL` if the file could not be processed (e.g., if it has no results or is invalid).
+A data frame containing the processed results, or `NULL` if the file could not be processed.
 }
 \description{
-This function reads and processes individual files from SuSiEx output, such as `.summary`, `.cs`, and `.snp` files. It extracts relevant information, including chromosome and position data, and handles file reading and error management.
-}
-\details{
-- For `.summary` files, it reads the data skipping the header line.
-- For `.cs` and `.snp` files, it reads them directly as data frames.
-- If the file has no rows or contains only two columns (indicating that it is empty or invalid), the function returns `NULL` and skips processing that file.
-- It extracts chromosome (CHR), start position (BP_START), and end position (BP_END) from the file name using regular expressions.
-
-This function is called internally by other functions in the package to process multiple files at once.
+Reads and processes individual SuSiEx output files, extracting chromosome and position data from the `.summary` file
+and using that information to process `.cs` and `.snp` files.
 }
 \keyword{internal}
