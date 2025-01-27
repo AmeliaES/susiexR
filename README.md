@@ -1,5 +1,8 @@
 # R package for formatting and plotting output from SuSiEx 
 
+[![Codecov](https://codecov.io/gh/ameliaes/susiexR/branch/dev/graph/badge.svg)](https://app.codecov.io/gh/AmeliaES/susiexR/tree/dev/)
+![CI Status](https://github.com/ameliaes/susiexR/actions/workflows/r.yml/badge.svg)
+
 ## What is SuSiEx?
 "SuSiEx is a C++ based command line tool that performs cross-ancestry fine-mapping using GWAS summary statistics and LD reference panels. The method is built on the Sum of Single Effects (SuSiE) model:
 Wang, G., Sarkar, A., Carbonetto, P. & Stephens, M. A simple new approach to variable selection in regression, with application to genetic fine mapping. J. R. Stat. Soc. Series B Stat. Methodol. 82, 1273–1300 (2020). https://doi.org/10.1111/rssb.12388"
