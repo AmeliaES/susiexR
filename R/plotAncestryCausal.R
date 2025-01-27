@@ -51,7 +51,7 @@ plotAncestryCausal <-  function(summary_results, ancestries){
       }
     })) %>%
     # remove the indiviudal ancestry columnms now we have the column we want
-    dplyr::select(-ancestries) %>%
+    dplyr::select(-all_of(ancestries)) %>%
     # create a column for location on the genome
     mutate(LOCATION = str_glue("{CHR}:{BP_START}:{BP_END}")) %>%
     # Ensure CHR and BP are in correct order on x-axis
