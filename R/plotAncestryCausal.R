@@ -38,9 +38,8 @@ plotAncestryCausal <-  function(summary_results, ancestries){
 
   # this function should not run if "POST_HOC_PROB_POP" columns are not present
   # from the output of SuSiEx
-  if (!all(str_detect(names(summary_results), "POST_HOC_PROB_POP"))) {
-    stop("No POST_HOC_PROB_POP columns found in the input data.
-         See the SuSiEx documentation for more information.")
+  if ( length(str_subset(names(summary_results), "POST-HOC_PROB_POP")) != length(ancestries)  )  {
+    stop("Error: No POST_HOC_PROB_POP columns found in the input data. See the SuSiEx documentation for more information.")
   }
 
   summary_results %>%
