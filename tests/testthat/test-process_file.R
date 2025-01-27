@@ -2,7 +2,7 @@ test_that("number of columns in processed summary file is 12 plus number of ance
 
   summary_file <- system.file("extdata", "data-susiex-example-output-extra", "SuSiEx.EUR.AFR.output.cs95.summary", package = "susiexR")
 
-  summary_result <- susiexR:::process_file(file = summary_file, file_ext = "summary", ancestries = c("EUR", "AFR"))
+  summary_result <- process_file(file = summary_file, file_ext = "summary", ancestries = c("EUR", "AFR"))
 
   ancestries <- c("EUR", "AFR")
 
@@ -14,7 +14,7 @@ test_that("names of columns in processed summary file is correct", {
 
   summary_file <- system.file("extdata", "data-susiex-example-output-extra", "SuSiEx.EUR.AFR.output.cs95.summary", package = "susiexR")
 
-  summary_result <- susiexR:::process_file(file = summary_file, file_ext = "summary", ancestries = c("EUR", "AFR"))
+  summary_result <- process_file(file = summary_file, file_ext = "summary", ancestries = c("EUR", "AFR"))
 
   ancestries <- c("EUR", "AFR")
 

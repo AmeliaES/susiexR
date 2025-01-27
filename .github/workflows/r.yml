@@ -33,5 +33,6 @@ jobs:
 
       - name: Run tests with testthat
         run: |
+          devtools::load_all()
           testthat::test_dir("tests/testthat")  # Run the tests located in the tests/testthat directory
         shell: Rscript {0}  # Execute test script via R
