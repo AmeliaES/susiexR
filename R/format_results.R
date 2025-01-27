@@ -4,6 +4,7 @@
 #' applying it to `.cs` and `.snp` files. Files that cannot be processed are excluded.
 #'
 #' @param path A character string specifying the directory containing the SuSiEx output files.
+#' @param ancestries A character vector specifying the ancestries used in the SuSiEx analysis.
 #'
 #' @return A list with the following components:
 #'   - `summary`: A data frame containing the combined data from all `.summary` files.
@@ -11,7 +12,9 @@
 #'   - `snp`: A list of data frames for `.snp` files, each annotated with position information.
 #'
 #' @examples
-#' format_results("path/to/susiex/results")
+#' \dontrun{
+#' format_results("path/to/susiex/results", ancestries = c("EUR", "AFR"))
+#' }
 #'
 #' @import dplyr
 #' @import purrr

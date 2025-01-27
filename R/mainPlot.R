@@ -8,9 +8,26 @@
 #' @param snp_results Data frame containing SNP results.
 #' @param sumstats List of data frames containing summary statistics for each ancestry.
 #' @param ancestries Vector of ancestries to be analyzed.
+#'
 #' @param plink_path String specifying the path to the PLINK executable.
+#'
 #' @return A list containing the region identifier and the combined plot.
+#'
+#' @import cowplot
+#' @import ggrepel
+#' @import topr
+#' @import dplyr
+#' @import purrr
+#' @import stringr
+#'
 #' @export
+
+utils::globalVariables(c(
+  "BP", "-LOG10P", "logP_EUR", "PIP(CS1)", "SNP", ".", "PHASED_R2",
+  "OVRL_PIP", "CS_PIP", "R2", "gene_symbol", "y", "gene_start", "biotype",
+  "PIP_color", "POS", "PIP_CS1", "P"
+))
+
 mainPlot <- function(cs_results, snp_results, sumstats, ancestries, plink_path) {
   tryCatch(
     {

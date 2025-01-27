@@ -17,7 +17,9 @@
 #' different ancestries.
 #'
 #' @examples
+#' \dontrun{
 #' plotAncestryCausal(results$summary, c("EUR", "AFR", "SAS"))
+#' }
 #'
 #' @import dplyr
 #' @import tidyr
@@ -25,6 +27,12 @@
 #' @import stringr
 #'
 #' @export
+
+utils::globalVariables(c(
+  "ALT_ALLELE", "ANCESTRY", "CHR", "BP_START", "LOCATION", "POST_HOC_PROB_POP_ANCESTRY",
+  ".", "POST_HOC_PROB_POP_CS"
+))
+
 plotAncestryCausal <-  function(summary_results, ancestries){
 
   # this function should not run if "POST_HOC_PROB_POP" columns are not present

@@ -16,13 +16,19 @@
 #' @return A ggplot2 object that visualizes the relationship between `CS_PURITY`, `MAX_PIP`, and `CS_LENGTH` across chromosomes.
 #'
 #' @examples
+#' \dontrun{
 #' plotPurityPIP(results$summary)
+#' }
 #'
 #' @import dplyr
 #' @import ggplot2
 #' @import stringr
 #'
 #' @export
+
+utils::globalVariables(c(
+  "results", "CHR", ".", "CS_PURITY", "MAX_PIP", "CS_LENGTH"
+))
 
 plotPurityPIP <-  function(summary_results = results$summary){
   summary_results %>%

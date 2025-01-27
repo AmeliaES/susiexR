@@ -8,6 +8,8 @@ format_results(path, ancestries)
 }
 \arguments{
 \item{path}{A character string specifying the directory containing the SuSiEx output files.}
+
+\item{ancestries}{A character vector specifying the ancestries used in the SuSiEx analysis.}
 }
 \value{
 A list with the following components:
@@ -20,6 +22,8 @@ Processes the SuSiEx output files by extracting position information from `.summ
 applying it to `.cs` and `.snp` files. Files that cannot be processed are excluded.
 }
 \examples{
-format_results("path/to/susiex/results")
+\dontrun{
+format_results("path/to/susiex/results", ancestries = c("EUR", "AFR"))
+}
 
 }
