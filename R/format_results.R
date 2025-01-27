@@ -22,8 +22,13 @@
 format_results <- function(path, ancestries) {
 
   # Check location at path exists
+  if (!dir.exists(path)) {
+    stop("Path does not exist.")
+  }
 
-  # Check location at path contains .summary, .snp and .cs files (1 of each, ie. sets of 3, with the same base name)
+  # Check location at path contains .summary, .snp and .cs files
+
+
 
   # Identify all .summary files
   summary_files <- list.files(path, pattern = "\\.summary$", full.names = TRUE)

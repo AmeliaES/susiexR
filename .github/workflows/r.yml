@@ -23,11 +23,20 @@ jobs:
         with:
           r-version: 'release'  # Use the latest stable R version
 
+      - name: Install remotes package
+        run: |
+          install.packages("remotes")  # Install remotes package if it's not present
+
       - name: Install dependencies
         run: |
           install.packages("testthat")
-          remotes::install_deps(dependencies = TRUE)
+          remotes::install_deps(dependencies = TRUE)  # Ensure all dependencies are installed
         shell: Rscript {0}
+
+      - name: Install pkg-config if missing (for macOS dependencies)
+        run: |
+          brew install pkg-config
+        shell: bash
 
       - name: Run tests with testthat
         run: |
