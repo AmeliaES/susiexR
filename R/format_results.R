@@ -29,8 +29,31 @@ format_results <- function(path, ancestries) {
     stop("Path does not exist.")
   }
 
-  # Check location at path contains .summary, .snp and .cs files
+  # Check location at path contains .summary, .snp and .cs files,
+  # in sets of 3, with the same base name
+  # List all files with the desired extensions
+  files <- list.files(path, pattern = "\\.summary$|\\.snp$|\\.cs$", full.names = TRUE)
 
+  # Check correct file types
+  if (length(files) == 0) {
+    stop("No .summary, .snp or .cs files found in the specified directory.")
+  }
+
+  # Extract base names by removing the extensions
+  base_names <- sub("\\.(summary|snp|cs)$", "", basename(files))
+
+  # Count occurrences of each base name
+  base_name_counts <- table(base_names)
+
+  # Check for invalid base names
+  invalid_base_names <- names(base_name_counts[base_name_counts != 3])
+
+  # If any invalid base names exist, throw an error with details
+  if (length(invalid_base_names) > 0) {
+    invalid_files <- files[base_names %in% invalid_base_names]
+    stop("Error: The following files are invalid as their base names do not have exactly 3 associated files:\n",
+         paste(invalid_files, collapse = "\n"))
+  }
 
 
   # Identify all .summary files
