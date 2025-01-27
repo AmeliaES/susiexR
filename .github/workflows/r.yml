@@ -30,6 +30,15 @@ jobs:
           packages: |
             testthat
             devtools
+            data.table
+            dplyr
+            ggplot2
+            purrr
+            stringr
+            tidyr
+            topr
+            ggrepel
+            cowplot
 
       - name: Run tests with testthat
         run: |

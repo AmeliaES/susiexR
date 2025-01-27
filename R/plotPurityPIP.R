@@ -25,6 +25,7 @@
 #' @import stringr
 #'
 #' @export
+#' @name plotPurityPIP
 
 utils::globalVariables(c(
   "results", "CHR", ".", "CS_PURITY", "MAX_PIP", "CS_LENGTH"

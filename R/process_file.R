@@ -10,7 +10,7 @@
 #'
 #' @return A data frame containing the processed results, or `NULL` if the file could not be processed.
 #'
-#' @import data.table
+#' @importFrom data.table fread
 #' @import dplyr
 #' @import stringr
 #'

@@ -27,6 +27,7 @@
 #' @import stringr
 #'
 #' @export
+#' @name plotAncestryCausal
 
 utils::globalVariables(c(
   "ALT_ALLELE", "ANCESTRY", "CHR", "BP_START", "LOCATION", "POST_HOC_PROB_POP_ANCESTRY",

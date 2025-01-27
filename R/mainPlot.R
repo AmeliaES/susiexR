@@ -21,6 +21,7 @@
 #' @import stringr
 #'
 #' @export
+#' @name mainPlot
 
 utils::globalVariables(c(
   "BP", "-LOG10P", "logP_EUR", "PIP(CS1)", "SNP", ".", "PHASED_R2",
