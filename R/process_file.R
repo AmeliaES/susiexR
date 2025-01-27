@@ -16,7 +16,7 @@
 #'
 #' @keywords internal
 
-process_file <- function(file, file_ext, chr_info = NULL) {
+process_file <- function(file, file_ext, chr_info = NULL, ancestries) {
 
   tryCatch({
     # Process .summary files
@@ -29,9 +29,28 @@ process_file <- function(file, file_ext, chr_info = NULL) {
       }
 
       # Read the remaining data, skipping the header line
-      results <- fread(file, skip = 1)
+      results <- fread(file, skip = 1, sep = "\t")
 
-      #
+      # Check if number of columns are equal to 12 plus number of ancestries used in SuSiEx
+
+      # Calculate 12 plus number of ancestries used in SuSiEx
+      expected_ncol <- 12 + length(ancestries)
+
+      if ( ncol(results) != expected_ncol  ) {
+        stop("Invalid number of columns in .summary file")
+      }
+
+      # Check if column names are as expected
+      # "POST-HOC_PROB_POP*" columns are added for each ancestry
+
+      expected_col_names <- c("CS_ID", "CS_LENGTH", "CS_PURITY", "MAX_PIP_SNP",
+                              "BP", "REF_ALLELE",  "ALT_ALLELE", "REF_FRQ",
+                              "BETA", "SE", "-LOG10P", "MAX_PIP",
+                              paste0("POST-HOC_PROB_POP", 1:length(ancestries)))
+
+      if ( ! all(colnames(results) %in% expected_col_names) ) {
+        stop("Invalid column names in .summary file")
+      }
 
       # Add CHR, BP_START, and BP_END to the data
       results <- results %>%

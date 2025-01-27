@@ -19,7 +19,7 @@
 #'
 #' @export
 
-format_results <- function(path) {
+format_results <- function(path, ancestries) {
 
   # Check location at path exists
 
@@ -31,7 +31,7 @@ format_results <- function(path) {
   # Process each .summary file and its related .cs and .snp files
   results <- lapply(summary_files, function(summary_file) {
     # Process the .summary file and extract CHR info
-    summary_result <- process_file(file = summary_file, file_ext = "summary")
+    summary_result <- process_file(file = summary_file, file_ext = "summary", ancestries = ancestries)
     if (is.null(summary_result)) return(NULL)
 
     # Extract CHR info from the .summary file
