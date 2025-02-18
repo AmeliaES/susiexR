@@ -37,11 +37,17 @@ plotPurityPIP <-  function(summary_results = results$summary){
     mutate(CHR = factor(CHR, levels = unique(CHR))) %>%
     ggplot(., aes(x = CS_PURITY, y = MAX_PIP, size = CS_LENGTH)) +
     geom_point(alpha = 0.6, aes(colour = CHR)) +
+    geom_text_repel(data = subset(summary_results, MAX_PIP > 0.8),
+                    aes(label = CHR),
+                    size = 3,
+                    box.padding = 0.5, max.overlaps = Inf,
+                    segment.color = "black") +
+    geom_hline(yintercept = 0.8, linetype = "dashed", color = "red", linewidth = 1) +
     scale_size_continuous(range = c(1, 10)) +
     labs(
       x = "Credible Set Purity",
       y = "Maximum Posterior Inclusion Probability",
-      size = "Number of SNPs\nin credible set\n(min=1; max=170)",
+      size = "Number of SNPs\nin credible set",
       colour = "Chromosome"
     ) +
     theme_minimal() +
