@@ -55,6 +55,11 @@ format_results <- function(path, ancestries) {
          paste(invalid_files, collapse = "\n"))
   }
 
+  # check there are no duplicate chr and regions in the file names
+  fine_mapped_regions <- str_extract(base_names, "\\d+:\\d+:\\d+")
+
+  length(fine_mapped_regions) == length(unique(fine_mapped_regions)) ||
+    stop("Duplicate fine mapped regions found in file names.")
 
   # Identify all .summary files
   summary_files <- list.files(path, pattern = "\\.summary$", full.names = TRUE)
