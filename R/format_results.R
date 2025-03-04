@@ -3,7 +3,7 @@
 #' Processes the SuSiEx output files by extracting position information from `.summary` files and
 #' applying it to `.cs` and `.snp` files. Files that cannot be processed are excluded.
 #'
-#' @param path A character string specifying the directory containing the SuSiEx output files.
+#' @param path A character string specifying the directory containing the SuSiEx output files. The user must check there are no duplicate files of fine mapped regions.
 #' @param ancestries A character vector specifying the ancestries used in the SuSiEx analysis.
 #'
 #' @return A list with the following components:
@@ -54,7 +54,6 @@ format_results <- function(path, ancestries) {
     stop("Error: The following files are invalid as their base names do not have exactly 3 associated files:\n",
          paste(invalid_files, collapse = "\n"))
   }
-
 
   # Identify all .summary files
   summary_files <- list.files(path, pattern = "\\.summary$", full.names = TRUE)
