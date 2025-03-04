@@ -12,6 +12,10 @@
 
 \item{ancestries}{Vector of ancestries to be analyzed.}
 
+\item{plink2_path}{String specifying the path to the PLINK executable.}
+
+\item{bfile_paths}{String specifying the path to the PLINK binary files.}
+
 \item{plink_path}{String specifying the path to the PLINK executable.}
 }
 \value{

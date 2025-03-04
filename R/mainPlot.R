@@ -8,6 +8,8 @@
 #' @param snp_results Data frame containing SNP results.
 #' @param sumstats List of data frames containing summary statistics for each ancestry.
 #' @param ancestries Vector of ancestries to be analyzed.
+#' @param plink2_path String specifying the path to the PLINK executable.
+#' @param bfile_paths String specifying the path to the PLINK binary files.
 #'
 #' @param plink_path String specifying the path to the PLINK executable.
 #'
