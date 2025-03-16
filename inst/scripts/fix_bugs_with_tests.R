@@ -13,6 +13,7 @@ library(tidyr)
 library(purrr)
 library(stringr)
 library(devtools)
+library(synthpop)
 load_all()
 
 # ---- Read in variables:
@@ -80,6 +81,28 @@ plotAncestryCausal(results$summary, ancestries = ancestries_susiex_order)
 # Let's write a test to the formatResults() function that checks this
 
 ###############################################################################
+# Generate some test files based on results in "../antidep-gwas/fineMapping/output"
+# and save these in inst/extdata/data-susiex-ancestry-labels-not-ordered
 
+system("mkdir -p inst/extdata/ancestry-labels-not-ordered")
+system("cp ../antidep-gwas/fineMapping/output/*.cs inst/extdata/ancestry-labels-not-ordered")
+system("cp ../antidep-gwas/fineMapping/output/*.snp inst/extdata/ancestry-labels-not-ordered")
+system("cp ../antidep-gwas/fineMapping/output/*.summary inst/extdata/ancestry-labels-not-ordered")
+
+# Remove all contents in these files (as it's real data), and we only need file names for this test
+clear_file_contents <- function(dir_path) {
+  # Get all the file names in the directory
+  files <- list.files(dir_path, full.names = TRUE)
+
+  # Loop through each file and clear its contents
+  for (file in files) {
+    write("", file)  # Clear file contents
+    message(paste("Cleared contents of:", file))  # Print confirmation
+  }
+  message(Sys.time(), ": All file contents have been cleared, file names are kept intact.")
+}
+
+# Example usage of the function
+clear_file_contents("inst/extdata/ancestry-labels-not-ordered")
 
 
