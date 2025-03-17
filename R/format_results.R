@@ -39,6 +39,30 @@ format_results <- function(path, ancestries) {
     stop("No .summary, .snp or .cs files found in the specified directory.")
   }
 
+  # All file names should contain the ancestry labels in one order
+  # the order may differ to the order in the vector above (given as an argument to format_results function)
+
+  # Get all possible orders of ancestries (permutations)
+  permutations <- arrangements::permutations(ancestries)
+
+  # Collapse the permutations into strings, separated by any common separator (hyphen, underscore or period)
+  permutations_strings <- lapply(1:nrow(permutations), function(i) {
+    paste(permutations[i, ], collapse = "[-_.]")  # Match hyphens, underscores, or periods
+  })
+
+  # Check for matches: We want to ensure that only one order is found across all files
+  ancestry_string_in_all_file_names <- sapply(permutations_strings, function(perm) {
+    # Loop over each ancestry order and check if it is found in all file names
+    all(sapply(files, function(file) {
+      grepl(perm, file)
+    }))
+  })
+
+  # Check if exactly one valid ancestry order is found across all files
+  if (sum(ancestry_string_in_all_file_names) != 1) {
+    stop("Error: The file names do not have the same order of ancestry labels or the ancestries are not immediately separated by hyphens, underscores, or periods.")
+  }
+
   # Extract base names by removing the extensions
   base_names <- sub("\\.(summary|snp|cs)$", "", basename(files))
 
