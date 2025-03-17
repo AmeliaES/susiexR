@@ -61,41 +61,17 @@ test_that("format_results processes valid input correctly (positive case)", {
 
 })
 
-test_that("ancestry labels in file names are in the same order for all files", {
+test_that("format_results throws error if file names have more than one ancestry order", {
 
   # Get the path to where the test data is stored
+  # The file names in test data directory do not all have the same order of ancestry labels
   source_path <- system.file("extdata", "ancestry-labels-not-ordered", package = "susiexR")
-
-  # Get the names of files in the test data directory
-  file_names <- list.files(source_path, full.names = TRUE, pattern = "\\.summary$|\\.snp$|\\.cs$")
 
   # Define ancestries used in the test data
   ancestries <- c("SAS", "EUR", "AFR")
 
-  # All file names should contain the ancestry labels in one order
-  # the order may differ to the order in the vector above (given as an argument to format_results function)
-
-  # Get all possible orders of ancestries (permutations)
-  permutations <- arrangements::permutations(ancestries)
-
-  # Collapse the permutations into strings, separated by any common separator (hyphen, underscore or period)
-  permutations_strings <- lapply(1:nrow(permutations), function(i) {
-    paste(permutations[i, ], collapse = "[-_.]")  # Match hyphens, underscores, or periods
-  })
-
-  # Check for matches: We want to ensure that only one order is found across all files
-  ancestry_string_in_all_file_names <- sapply(permutations_strings, function(perm) {
-    # Loop over each ancestry order and check if it is found in all file names
-    all(sapply(file_names, function(file) {
-      grepl(perm, file)
-    }))
-  })
-
-  # Check if exactly one valid ancestry order is found across all files
-  if (sum(ancestry_string_in_all_file_names) != 1) {
-    expect_error(format_results(source_path, ancestries = ancestries),
-                 "Error: The file names do not have the same order of ancestry labels or the ancestries are not immediately separated by hyphens, underscores, or periods.")
-  }
+  expect_error(format_results(source_path, ancestries = ancestries),
+              "Error: The file names do not have the same order of ancestry labels or the ancestries are not immediately separated by hyphens, underscores, or periods.")
 
 })
 
