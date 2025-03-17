@@ -78,7 +78,7 @@ plotAncestryCausal(results$summary, ancestries = ancestries_susiex_order)
 # The function in my package assumes the order of the ancestries is the same as the order passed to SuSiEx
 # The only way to catch this error is to get all the file names in the directory where SuSiEx results are stored
 # As the file names contain the order in which the ancestries were passed to SuSiEx
-# Let's write a test to the formatResults() function that checks this
+# Let's write a test to the format_results() function that checks this
 
 ###############################################################################
 # Generate some test files based on results in "../antidep-gwas/fineMapping/output"
