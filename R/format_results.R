@@ -19,8 +19,13 @@
 #' @import dplyr
 #' @import purrr
 #' @import stringr
+#' @importFrom arrangements permutations
 #'
 #' @export
+#' @name format_results
+
+# Define global variables (i used in lapply)
+globalVariables("i")
 
 format_results <- function(path, ancestries) {
 
@@ -47,7 +52,7 @@ format_results <- function(path, ancestries) {
 
   # Collapse the permutations into strings, separated by any common separator (hyphen, underscore or period)
   permutations_strings <- lapply(1:nrow(permutations), function(i) {
-    paste(permutations[i, ], collapse = "[-_.]")  # Match hyphens, underscores, or periods
+    paste(permutations[i, ], collapse = "[-_.]")  # This uses 'i' correctly within the scope
   })
 
   # Check for matches: We want to ensure that only one order is found across all files

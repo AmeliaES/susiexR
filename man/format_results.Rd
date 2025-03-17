@@ -3,11 +3,8 @@
 \name{format_results}
 \alias{format_results}
 \title{Format SuSiEx Output Files}
-\usage{
-format_results(path, ancestries)
-}
 \arguments{
-\item{path}{A character string specifying the directory containing the SuSiEx output files.}
+\item{path}{A character string specifying the directory containing the SuSiEx output files. The user must check there are no duplicate files of fine mapped regions.}
 
 \item{ancestries}{A character vector specifying the ancestries used in the SuSiEx analysis.}
 }

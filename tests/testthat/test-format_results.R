@@ -80,5 +80,3 @@ test_that("format_results throws error if file names have more than one ancestry
 # test_that("all filenames contain the same number of ancestries")
 # test_that("all summary results contain the same number of ancestries in ancestry comma separated columns")
 
-
-

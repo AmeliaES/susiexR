@@ -99,10 +99,19 @@ clear_file_contents <- function(dir_path) {
     write("", file)  # Clear file contents
     message(paste("Cleared contents of:", file))  # Print confirmation
   }
-  message(Sys.time(), ": All file contents have been cleared, file names are kept intact.")
+  message(": All file contents have been cleared, file names are kept intact.")
 }
 
 # Example usage of the function
 clear_file_contents("inst/extdata/ancestry-labels-not-ordered")
 
+dir_path <- "inst/extdata/ancestry-labels-not-ordered/"
+
+files <- list.files(dir_path, full.names = TRUE)
+
+# Replace ":" with "-" in filenames
+new_files <- gsub(":", "-", files)
+
+# Rename files
+file.rename(files, new_files)
 
